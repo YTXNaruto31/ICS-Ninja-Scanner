@@ -1,6 +1,8 @@
 # MottaSec ICS Ninja Scanner
 
+<p align="center">
 <img src="images/logo.png" alt="MottaSec ICS Ninja Scanner Logo" width="300px">
+</p>
 
 A multi-protocol Industrial Control System (ICS) security scanner that detects misconfigurations, weak implementations, and security flaws in industrial control systems. Created by the MottaSec Ghost Team - the unseen guardians of industrial systems.
 
