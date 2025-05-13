@@ -1,0 +1,114 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+test-env/
+.python-version
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+.project
+.pydevproject
+.settings/
+.DS_Store
+
+# Scan results and output files
+scan_results.*
+*.json
+*.csv
+*.txt
+!requirements.txt
+!LICENSE.txt
+!README.txt
+!README.md
+
+# Debug logs
+debug_logs
+*.log
+logs/
+
+# MottaSec custom ignores
+.mottasec_config
+mottasec_cache/
+.mottasec_history
+.mottasec_credentials
+
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+*~
+
+# Virtual environment
+bin/
+include/
+lib/
+pyvenv.cfg
+
+# Local development configuration
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Do not ignore image files
+!images/
+!images/*.png
+!images/*.jpg
+!images/*.jpeg
+!images/*.svg 
